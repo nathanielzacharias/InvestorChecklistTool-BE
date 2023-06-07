@@ -1,6 +1,7 @@
 const dotenv = require('dotenv');
 const path = require('path');
 const Joi = require('joi');
+const dbName = 'ice-t';
 
 dotenv.config({ path: path.join(__dirname, '../../.env') });
 
@@ -36,7 +37,8 @@ module.exports = {
   env: envVars.NODE_ENV,
   port: envVars.PORT,
   mongoose: {
-    url: envVars.MONGODB_URL + (envVars.NODE_ENV === 'test' ? '-test' : ''),
+    // url: envVars.MONGODB_URL + (envVars.NODE_ENV === 'test' ? '-test' : ''),
+    url: envVars.MONGODB_URL,
     options: {
       useCreateIndex: true,
       useNewUrlParser: true,
