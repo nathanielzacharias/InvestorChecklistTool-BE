@@ -7,8 +7,8 @@ const swaggerDef = {
     title: 'investor-checklist-tool-backend API documentation',
     version,
     license: {
-      name: "",
-      url: "",
+      name: '',
+      url: '',
     },
   },
   servers: [

@@ -1,7 +1,6 @@
 const dotenv = require('dotenv');
 const path = require('path');
 const Joi = require('joi');
-const dbName = 'ice-t';
 
 dotenv.config({ path: path.join(__dirname, '../../.env') });
 
