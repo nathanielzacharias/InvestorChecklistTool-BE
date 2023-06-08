@@ -1,37 +1,37 @@
 const express = require('express');
 const auth = require('../../middlewares/auth');
 const validate = require('../../middlewares/validate');
-const checklistValidation = require('../../validations/checklist.validation');
-const checklistController = require('../../controllers/checklist.controller');
+const toDoListValidation = require('../../validations/todolist.validation');
+const todolistController = require('../../controllers/todolist.controller');
 
 const router = express.Router();
 
 router
   .route('/')
-  .post(auth('getUsers'), validate(checklistValidation.createChecklist), checklistController.createChecklist);
+  .post(auth('getUsers'), validate(todolistValidation.createToDoList), todolistController.createToDoList);
 
 router
-  .route('/:checklistId')
-  .get(auth('getUsers'), validate(checklistValidation.getChecklist), checklistController.getChecklist)
-  .patch(auth('getUsers'), validate(checklistValidation.updateChecklist), checklistController.updateChecklist)
-  .delete(auth('getUsers'), validate(checklistValidation.deleteChecklist), checklistController.deleteChecklist);
+  .route('/:todolistId')
+  .get(auth('getUsers'), validate(todolistValidation.getToDoListsAndToDoLists), todolistController.getToDoListsAndToDoLists)
+  .patch(auth('getUsers'), validate(todolistValidation.updateToDoList), todolistController.updateToDoList)
+  .delete(auth('getUsers'), validate(todolistValidation.deleteToDoList), todolistController.deleteToDoList);
 
 module.exports = router;
 
 /**
  * @swagger
  * tags:
- *   name: Checklists
- *   description: Checklist functions
+ *   name: ToDoLists
+ *   description: ToDoList functions
  */
 
 /**
  * @swagger
- * /checklists:
+ * /todolists:
  *   post:
- *     summary: Create a checklist
- *     description: Create checklist from selected card.
- *     tags: [Checklists]
+ *     summary: Create a todolist
+ *     description: Create todolist from selected card.
+ *     tags: [ToDoLists]
  *     security:
  *       - bearerAuth: []
  *     requestBody:
@@ -62,13 +62,13 @@ module.exports = router;
  *                 description: objectId of card (can be obtained from the react component label/id of the card's component)
  *               global:
  *                 type: boolean
- *                 description: if true, this checklist will appear across all cards within a board
+ *                 description: if true, this todolist will appear across all cards within a board
  *               rating:
  *                 type: string
  *                 description: one of these [very poor, poor, average, good, very good]
  *               columnPosition:
  *                 type: integer
- *                 description: starts at 0; columnPosition in table; should only be changeable from board model for global checklists
+ *                 description: starts at 0; columnPosition in table; should only be changeable from board model for global todolists
  *             example:
  *               name: Public sentiment
  *               owner: 5ebac534954b54139806c112
@@ -83,7 +83,7 @@ module.exports = router;
  *         content:
  *           application/json:
  *             schema:
- *                $ref: '#/components/schemas/Checklist'
+ *                $ref: '#/components/schemas/ToDoList'
  *       "400":
  *         $ref: '#/components/responses/DuplicateName'
  *       "401":
@@ -94,10 +94,10 @@ module.exports = router;
 
 /**
  * @swagger
- * /checklists/{id}:
+ * /todolists/{id}:
  *   get:
- *     summary: Get the checklist belonging to the given req.params.id
- *     tags: [Checklists]
+ *     summary: Get the todolist belonging to the given req.params.id
+ *     tags: [ToDoLists]
  *     security:
  *       - bearerAuth: []
  *     parameters:
@@ -106,14 +106,14 @@ module.exports = router;
  *         required: true
  *         schema:
  *           type: string
- *         description: checklistId
+ *         description: todolistId
  *     responses:
  *       "200":
  *         description: OK
  *         content:
  *           application/json:
  *             schema:
- *                $ref: '#/components/schemas/Checklist'
+ *                $ref: '#/components/schemas/ToDoList'
  *       "401":
  *         $ref: '#/components/responses/Unauthorized'
  *       "403":
@@ -122,9 +122,9 @@ module.exports = router;
  *         $ref: '#/components/responses/NotFound'
  *
  *   patch:
- *     summary: Update a checklist
- *     description: Update a checklist's fields.
- *     tags: [Checklists]
+ *     summary: Update a todolist
+ *     description: Update a todolist's fields.
+ *     tags: [ToDoLists]
  *     security:
  *       - bearerAuth: []
  *     parameters:
@@ -133,7 +133,7 @@ module.exports = router;
  *         required: true
  *         schema:
  *           type: string
- *         description: checklistId
+ *         description: todolistId
  *     requestBody:
  *       required: true
  *       content:
@@ -158,7 +158,7 @@ module.exports = router;
  *         content:
  *           application/json:
  *             schema:
- *                $ref: '#/components/schemas/Checklist'
+ *                $ref: '#/components/schemas/ToDoList'
  *       "400":
  *         $ref: '#/components/responses/DuplicateName'
  *       "401":
@@ -169,9 +169,9 @@ module.exports = router;
  *         $ref: '#/components/responses/NotFound'
  *
  *   delete:
- *     summary: Delete a checklist
- *     description: A checklist can be deleted from the selected board.
- *     tags: [Checklists]
+ *     summary: Delete a todolist
+ *     description: A todolist can be deleted from the selected board.
+ *     tags: [ToDoLists]
  *     security:
  *       - bearerAuth: []
  *     parameters:
@@ -180,7 +180,7 @@ module.exports = router;
  *         required: true
  *         schema:
  *           type: string
- *         description: checklistId
+ *         description: todolistId
  *     responses:
  *       "200":
  *         description: No content
