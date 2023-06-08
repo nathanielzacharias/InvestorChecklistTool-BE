@@ -1,20 +1,20 @@
 const express = require('express');
 const auth = require('../../middlewares/auth');
 const validate = require('../../middlewares/validate');
-const toDoListValidation = require('../../validations/todolist.validation');
-const todolistController = require('../../controllers/todolist.controller');
+const toDoListValidation = require('../../validations/toDoList.validation');
+const toDoListController = require('../../controllers/toDoList.controller');
 
 const router = express.Router();
 
 router
   .route('/')
-  .post(auth('getUsers'), validate(todolistValidation.createToDoList), todolistController.createToDoList);
+  .post(auth('getUsers'), validate(toDoListValidation.createToDoList), toDoListController.createToDoList);
 
 router
   .route('/:todolistId')
-  .get(auth('getUsers'), validate(todolistValidation.getToDoListsAndToDoLists), todolistController.getToDoListsAndToDoLists)
-  .patch(auth('getUsers'), validate(todolistValidation.updateToDoList), todolistController.updateToDoList)
-  .delete(auth('getUsers'), validate(todolistValidation.deleteToDoList), todolistController.deleteToDoList);
+  .get(auth('getUsers'), validate(toDoListValidation.getToDoList), toDoListController.getToDoList)
+  .patch(auth('getUsers'), validate(toDoListValidation.updateToDoList), toDoListController.updateToDoList)
+  .delete(auth('getUsers'), validate(toDoListValidation.deleteToDoList), toDoListController.deleteToDoList);
 
 module.exports = router;
 
@@ -29,8 +29,8 @@ module.exports = router;
  * @swagger
  * /todolists:
  *   post:
- *     summary: Create a todolist
- *     description: Create todolist from selected card.
+ *     summary: Create a toDoList
+ *     description: Create toDoList from selected card.
  *     tags: [ToDoLists]
  *     security:
  *       - bearerAuth: []
@@ -42,41 +42,27 @@ module.exports = router;
  *             type: object
  *             required:
  *               - name
- *               - owner
- *               - boardId
  *               - cardId
- *               - global
- *               - rating
- *               - columnPosition
+ *               - freeText
+ *               - status
  *             properties:
  *               name:
  *                 type: string
- *               owner:
+ *                 description: title of To Do item
+ *               freeText:
  *                 type: string
- *                 description: objectId of logged in user returned after login success
- *               boardId:
- *                 type: string
- *                 description: objectId of board (can be obtained from state of component, or local storage, or cookie)
+ *                 description: free text for user to input details
  *               cardId:
  *                 type: string
  *                 description: objectId of card (can be obtained from the react component label/id of the card's component)
- *               global:
- *                 type: boolean
- *                 description: if true, this todolist will appear across all cards within a board
- *               rating:
+ *               status:
  *                 type: string
- *                 description: one of these [very poor, poor, average, good, very good]
- *               columnPosition:
- *                 type: integer
- *                 description: starts at 0; columnPosition in table; should only be changeable from board model for global todolists
+ *                 enum: [Not started, In progress, Completed, Cancelled]
  *             example:
- *               name: Public sentiment
- *               owner: 5ebac534954b54139806c112
- *               boardId: aebac993954b54139806d431
+ *               name: Further reading
+ *               freeText: understand concept of ROE after split
  *               cardId: 905acqedf54b54139806aac4
- *               global: true
- *               rating: very good
- *               columnPosition: 0
+ *               status: Not started
  *     responses:
  *       "201":
  *         description: Created
@@ -96,7 +82,7 @@ module.exports = router;
  * @swagger
  * /todolists/{id}:
  *   get:
- *     summary: Get the todolist belonging to the given req.params.id
+ *     summary: Get the toDoList belonging to the given req.params.id
  *     tags: [ToDoLists]
  *     security:
  *       - bearerAuth: []
@@ -106,7 +92,7 @@ module.exports = router;
  *         required: true
  *         schema:
  *           type: string
- *         description: todolistId
+ *         description: toDoListId
  *     responses:
  *       "200":
  *         description: OK
@@ -122,8 +108,8 @@ module.exports = router;
  *         $ref: '#/components/responses/NotFound'
  *
  *   patch:
- *     summary: Update a todolist
- *     description: Update a todolist's fields.
+ *     summary: Update a toDoList
+ *     description: Update a toDoList's fields.
  *     tags: [ToDoLists]
  *     security:
  *       - bearerAuth: []
@@ -133,7 +119,7 @@ module.exports = router;
  *         required: true
  *         schema:
  *           type: string
- *         description: todolistId
+ *         description: toDoListId
  *     requestBody:
  *       required: true
  *       content:
@@ -143,14 +129,10 @@ module.exports = router;
  *             properties:
  *               name:
  *                 type: string
- *               global:
- *                 type: boolean
- *               rating:
+ *               freeText:
  *                 type: string
- *                 enum: [very poor, poor, average, good, very good]
- *               columnPosition:
- *                 type: integer
- *                 minimum: 0
+ *               status:
+ *                 type: string
  *             minProperties: 1
  *     responses:
  *       "200":
@@ -169,8 +151,8 @@ module.exports = router;
  *         $ref: '#/components/responses/NotFound'
  *
  *   delete:
- *     summary: Delete a todolist
- *     description: A todolist can be deleted from the selected board.
+ *     summary: Delete a toDoList
+ *     description: A  toDoList can be deleted from the selected card.
  *     tags: [ToDoLists]
  *     security:
  *       - bearerAuth: []
@@ -180,7 +162,7 @@ module.exports = router;
  *         required: true
  *         schema:
  *           type: string
- *         description: todolistId
+ *         description: toDoListId
  *     responses:
  *       "200":
  *         description: No content

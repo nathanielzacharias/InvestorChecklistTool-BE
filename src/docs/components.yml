@@ -113,6 +113,8 @@ components:
     ToDoList:
       type: string
       properties:
+        name: 
+          type: string
         freeText: 
           type: string
         cardId:

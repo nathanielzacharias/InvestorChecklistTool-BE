@@ -170,7 +170,7 @@ module.exports = router;
  *
  *   delete:
  *     summary: Delete a checklist
- *     description: A checklist can be deleted from the selected board.
+ *     description: A checklist can be deleted from the selected card.
  *     tags: [Checklists]
  *     security:
  *       - bearerAuth: []
