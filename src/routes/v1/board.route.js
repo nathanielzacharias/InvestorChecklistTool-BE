@@ -61,7 +61,7 @@ module.exports = router;
  *             schema:
  *                $ref: '#/components/schemas/Board'
  *       "400":
- *         $ref: '#/components/responses/DuplicateBoard'
+ *         $ref: '#/components/responses/DuplicateName'
  *       "401":
  *         $ref: '#/components/responses/Unauthorized'
  *       "403":
@@ -193,7 +193,7 @@ module.exports = router;
  *             schema:
  *                $ref: '#/components/schemas/Board'
  *       "400":
- *         $ref: '#/components/responses/DuplicateBoard'
+ *         $ref: '#/components/responses/DuplicateName'
  *       "401":
  *         $ref: '#/components/responses/Unauthorized'
  *       "403":
