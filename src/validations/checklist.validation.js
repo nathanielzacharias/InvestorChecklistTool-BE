@@ -18,6 +18,12 @@ const getCards = {
   }),
 };
 
+const getCard = {
+  params: Joi.object().keys({
+    cardId: Joi.string().custom(objectId),
+  }),
+};
+
 const getChecklistsAndToDoLists = {
   params: Joi.object().keys({
     cardId: Joi.string().custom(objectId),
@@ -48,6 +54,7 @@ const deleteCard = {
 module.exports = {
   createCard,
   getCards,
+  getCard,
   getChecklistsAndToDoLists,
   updateCard,
   deleteCard,
