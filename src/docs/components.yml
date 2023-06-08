@@ -38,6 +38,55 @@ components:
         cards: [{},{}]
         owner: 5ebac534954b54139806c112
 
+    Card:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        boards:
+          type: array
+          items:
+            $ref: '#/components/schemas/Board'
+        owner:
+          type: string
+        checklists:
+          type: array
+          items:
+            $ref: '#/components/schemas/Checklist'
+        toDoLists:
+          type: array
+          items:
+            $ref: '#/components/schemas/ToDoList'
+        rating:
+          type: string
+        note:
+          type: object
+          properties:
+            h1: 
+              type: string
+            h2:
+              type: string
+            p:
+              type: string
+          xml:
+            name:'xml-note'
+        links:
+          type: array
+          items:
+            type: string      
+      example:
+        id: 6fcac333954b54139806ff46
+        name: Apple
+        boards: [{}]
+        owner: 5ebac534954b54139806c112
+        checklists: [{},{}]
+        toDoLists: [{},{}]
+        rating: very good
+        note: <xml-note><h1>Quarterly performance</h1><h2>2023-Q1</h2><p>2% growth YTD</p></xml-note>
+        links: ["www.techcrunch.com","www.apple.com"]
+        
     Token:
       type: object
       properties:
