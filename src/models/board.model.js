@@ -15,16 +15,12 @@ const boardSchema = mongoose.Schema(
       // type: mongoose.Schema.Types.ObjectId,
       // ref: Card,
       type: [Card],
-
     },
     owner: {
       // type: User.id,
       type: mongoose.Schema.Types.ObjectId,
       ref: User,
       required: true,
-
-
-
     },
   },
   {
