@@ -19,6 +19,25 @@ components:
         name: fake name
         role: user
 
+    Board:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        cards:
+          type: array
+          items: 
+            $ref: '#/components/schemas/Card'
+        owner:
+          type: string
+      example:
+        id: 6fcac333954b54139806ff46
+        name: Currency Pairs
+        cards: [{},{}]
+        owner: 5ebac534954b54139806c112
+
     Token:
       type: object
       properties:
@@ -48,6 +67,15 @@ components:
           type: string
 
   responses:
+    DuplicateBoard:
+      description: Board name already taken
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            code: 400
+            message: Board name already taken
     DuplicateEmail:
       description: Email already taken
       content:

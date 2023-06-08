@@ -1,7 +1,8 @@
 const mongoose = require('mongoose');
 const validator = require('validator');
 const { toJSON, paginate } = require('./plugins');
-const { Card, User } = require('./models');
+const { Card, User } = require('./');
+const { string } = require('joi');
 
 const boardSchema = mongoose.Schema(
   {
@@ -11,12 +12,24 @@ const boardSchema = mongoose.Schema(
       trim: true,
     },
     cards: {
-      type: [Card.id]
+      // type: mongoose.Schema.Types.ObjectId,
+      // ref: Card,
+      type: [Card],
+
     },
     owner: {
-      type: User.id 
-    },  
+      // type: User.id,
+      type: mongoose.Schema.Types.ObjectId,
+      ref: User,
+      required: true,
+
+
+
+    },
+  },
+  {
     timestamps: true,
+  }
 );
 
 // add plugin that converts mongoose to json
