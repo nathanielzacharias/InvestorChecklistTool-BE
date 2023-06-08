@@ -153,15 +153,15 @@ components:
           type: string
 
   responses:
-    DuplicateBoard:
-      description: Board name already taken
+    DuplicateName:
+      description: This item's name is already taken
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/Error'
           example:
             code: 400
-            message: Board name already taken
+            message: This item's name is already taken
     DuplicateEmail:
       description: Email already taken
       content:
