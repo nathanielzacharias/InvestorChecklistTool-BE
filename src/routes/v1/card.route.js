@@ -202,7 +202,7 @@ module.exports = router;
  *             schema:
  *                $ref: '#/components/schemas/Card'
  *       "400":
- *         $ref: '#/components/responses/DuplicateCard'
+ *         $ref: '#/components/responses/DuplicateName'
  *       "401":
  *         $ref: '#/components/responses/Unauthorized'
  *       "403":
