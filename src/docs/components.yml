@@ -59,8 +59,8 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/ToDoList'
-        rating:
-          type: string
+        # rating:
+        #   type: string
         note:
           type: object
           properties:
@@ -83,10 +83,35 @@ components:
         owner: 5ebac534954b54139806c112
         checklists: [{},{}]
         toDoLists: [{},{}]
-        rating: very good
+        # rating: very good
         note: <xml-note><h1>Quarterly performance</h1><h2>2023-Q1</h2><p>2% growth YTD</p></xml-note>
         links: ["www.techcrunch.com","www.apple.com"]
+
+    Checklist:
+      type: object
+      properties:
+        id: 
+          type: string
+        name:
+          type: string
+        cardId:
+          type: string
+        boardId:
+          type: string
+        owner:
+          type: string
+        global:
+          type: boolean
+        rating:
+          type: string
+          enum: [very poor, poor, average, good, very good]
+        columnPosition:
+          type: integer
+          minimum: 0
+          # maximum: 30
         
+
+
     Token:
       type: object
       properties:
