@@ -1,61 +1,47 @@
 const Joi = require('joi');
 const { objectId } = require('./custom.validation');
 
-const createCard = {
+const createChecklist = {
   body: Joi.object().keys({
     name: Joi.string().required(),
     owner: Joi.custom(objectId),
     boardId: Joi.custom(objectId),
+    cardId: Joi.custom(objectId),
+    global: Joi.boolean(),
+    rating: Joi.string(),
+    columnPosition: Joi.number().integer(),
   }),
 };
 
-const getCards = {
-  query: Joi.object().keys({
-    boardId: Joi.custom(objectId),
-    sortBy: Joi.string(),
-    limit: Joi.number().integer(),
-    page: Joi.number().integer(),
-  }),
-};
-
-const getCard = {
+const getChecklist = {
   params: Joi.object().keys({
-    cardId: Joi.string().custom(objectId),
+    checklistId: Joi.string().custom(objectId),
   }),
 };
 
-const getChecklistsAndToDoLists = {
-  params: Joi.object().keys({
-    cardId: Joi.string().custom(objectId),
-  }),
-};
-
-const updateCard = {
+const updateChecklist = {
   params: Joi.object().keys({
     cardId: Joi.required().custom(objectId),
   }),
   body: Joi.object()
     .keys({
       name: Joi.string().required(),
-      //checklists (array of objects of mongo document)
-      //toDoLists (same as above)
-      //note of type object of type xml
-      //links of type array of type string
+      global: Joi.boolean(),
+      rating: Joi.string(),
+      columnPosition: Joi.number().integer(),
     })
     .min(1),
 };
 
-const deleteCard = {
+const deleteChecklist = {
   params: Joi.object().keys({
     cardId: Joi.string().custom(objectId),
   }),
 };
 
 module.exports = {
-  createCard,
-  getCards,
-  getCard,
-  getChecklistsAndToDoLists,
-  updateCard,
-  deleteCard,
+  createChecklist,
+  getChecklist,
+  updateChecklist,
+  deleteChecklist,
 };
