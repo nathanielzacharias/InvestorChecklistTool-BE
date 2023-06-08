@@ -154,14 +154,14 @@ components:
 
   responses:
     DuplicateName:
-      description: This item's name is already taken
+      description: This name is already taken
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/Error'
           example:
             code: 400
-            message: This item's name is already taken
+            message: This name is already taken
     DuplicateEmail:
       description: Email already taken
       content:
