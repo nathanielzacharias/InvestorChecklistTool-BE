@@ -109,6 +109,18 @@ components:
           type: integer
           minimum: 0
           # maximum: 30
+    
+    ToDoList:
+      type: string
+      properties:
+        freeText: 
+          type: string
+        cardId:
+          type: string
+        status:
+          type: string
+          enum: [Not started, In progress, Completed, Cancelled]
+
         
 
 
