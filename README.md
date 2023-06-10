@@ -1,5 +1,7 @@
 Accessing the API documentation:  
 - git clone this repository  
+- install dependencies with "yarn install"  
+- set environment variables in .env.example, then change name to .env  
 - run 'yarn dev'  
 - go to localhost:3000/v1/docs in browser  
 ---
