@@ -61,6 +61,12 @@ const getAllToDoListsInCard = async (cardId) => ToDoList.find({ cards: { $eq: ca
  * */
 const getAllChecklistsInCard = async (cardId) => Checklist.find({ cards: { $eq: cardId } });
 
+/**
+ * Update card by id
+ * @param {ObjectId} cardId
+ * @param {Object} updateBody
+ * @returns {Promise<Card>}
+ * */
 const updateCardById = async (cardId, updateBody) => {
   const card = await getCardById(cardId);
   if (!card) {
