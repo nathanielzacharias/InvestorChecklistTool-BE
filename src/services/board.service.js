@@ -49,7 +49,7 @@ const getBoardByName = async (name) => {
 /**
  * Get all cardId's by boardId
  * @param {ObjectId} boardId
- * @returns {Promise<Board>}
+ * @returns {Promise<QueryResult>}
  */
 const getAllCardsInBoard = async (boardId) => Card.find({ boards: { $eq: boardId } });
 
