@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const validator = require('validator');
 const { toJSON, paginate } = require('./plugins');
-const { Card, Board } = require('./');
+const { Card, Board, User } = require('./');
 
 const checklistSchema = mongoose.Schema(
   {
