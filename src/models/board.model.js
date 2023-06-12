@@ -14,6 +14,8 @@ const boardSchema = mongoose.Schema(
     cards: {
       // type: mongoose.Schema.Types.ObjectId,
       // ref: Card,
+      // type: [mongoose.Schema.Types.Object],
+      // ref: Card,
       type: [Card],
     },
     owner: {
