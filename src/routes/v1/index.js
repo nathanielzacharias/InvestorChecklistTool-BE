@@ -20,6 +20,10 @@ const defaultRoutes = [
     path: '/boards',
     route: boardRoute,
   },
+  {
+    path: '/docs',
+    route: docsRoute,
+  },
 ];
 
 const devRoutes = [
