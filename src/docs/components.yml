@@ -111,8 +111,10 @@ components:
           # maximum: 30
     
     ToDoList:
-      type: string
+      type: object
       properties:
+        id:
+          type: string
         name: 
           type: string
         freeText: 
