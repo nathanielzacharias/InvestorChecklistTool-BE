@@ -16,11 +16,11 @@ COPY package.json yarn.lock ./
 USER node
 
 # Install dependencies, --pure-lockfile reads from yarn.lock, does not generate a new lockfile, ensures reproducible builds
-RUN yarn install --pure-lockfile
+RUN yarn install --pure-lockfile --ignore-scripts
 
 # Bundle app source, . . copies all files from current directory (locally) to Docker's WORKDIR
 COPY --chown=node:node . .
 
 # Exposes port 3000 to other Docker containers, used in multi-container Docker applications
 # EXPOSE does not make the ports of the container accessible to the host.
-# EXPOSE 3000
+EXPOSE 3000
