@@ -9,7 +9,6 @@
 - go to localhost:3000/v1/docs in browser  
 ---
 
-
 This backend was built using the boilerplate from: https://github.com/hagopj13/node-express-boilerplate  
   
 endpoint = {base url from hosting service} + /v1  

@@ -3,4 +3,7 @@ version: '3'
 services:
   node-app:
     container_name: node-app-dev
-    command: yarn dev -L
+    # command: yarn dev -L
+    # -L option sets legacyWatch:true which enables polling, which is a workaround to the app not restarting in some networked environs. 
+    # It polls every file, to be used as last resort 
+    command: yarn dev 
