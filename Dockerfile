@@ -16,7 +16,7 @@ COPY package.json yarn.lock ./
 USER node
 
 # Install dependencies, --pure-lockfile reads from yarn.lock, does not generate a new lockfile, ensures reproducible builds
-RUN yarn install --pure-lockfile --ignore-scripts
+RUN yarn install --pure-lockfile 
 
 # Bundle app source, . . copies all files from current directory (locally) to Docker's WORKDIR
 COPY --chown=node:node . .

@@ -4,11 +4,12 @@ services:
   node-app:
     build: .
     image: node-app
-    # environment:
+    environment:
     #   - MONGODB_URL=mongodb://mongodb:27017/node-boilerplate
-    #   - MONGODB_URL= insert your mongodb url here
-    # ports:
-    #   - '3000:3000'
+      - MONGODB_URL=mongodb+srv://investor-checklist-tool-backend:CaLIU1HR1wnE9ZJ9@cluster0.ru8xaxp.mongodb.net/ice-t?retryWrites=true
+      # - HUSKY_SKIP_INSTALL=1
+    ports:
+      - '3000:3000'
     # depends_on:
     #   - mongodb
     volumes:
@@ -29,6 +30,6 @@ services:
 # volumes:
 #   dbdata:
 
-# networks:
-#   node-network:
-#     driver: bridge
+networks:
+  node-network:
+    driver: bridge
